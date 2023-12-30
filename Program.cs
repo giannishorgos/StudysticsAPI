@@ -1,4 +1,5 @@
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
@@ -12,9 +13,9 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("/schema/swagger/swagger.json", "STUDYstics API docs");
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "STUDYstics API docs");
 });
 
-app.MapGet("/", () => "Hello World!");
+app.MapGet("/{id}", (int id) => $"Hello World! {id}");
 
 app.Run();
